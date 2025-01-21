@@ -12,7 +12,7 @@ L'objectif de ce projet est de développer un site de vente en ligne permettant 
 
 ### 2. Users Stories et Critères d'acceptation
 
-#### 2.1 Gestion des produits par les vendeurs
+### 2.1 Gestion des produits par les vendeurs
 
 **User Story 1** : En tant que vendeur, je veux pouvoir ajouter de nouveaux produits afin de les rendre disponibles à l'achat sur le site.
 
@@ -31,7 +31,7 @@ L'objectif de ce projet est de développer un site de vente en ligne permettant 
 - La suppression d'un produit doit être confirmée avant exécution.
 
 
-#### 2.2 Panier d'achat
+### 2.2 Panier d'achat
 
 **User Story 3**: En tant qu'acheteur, je veux pouvoir ajouter des produits à mon panier afin de les acheter plus tard.
 
@@ -49,7 +49,7 @@ L'objectif de ce projet est de développer un site de vente en ligne permettant 
 - Chaque produit dans le panier doit avoir une option "Supprimer".
 - Après suppression, le produit ne doit plus apparaître dans le panier.
 
-#### 2.3 Gestion des commandes
+### 2.3 Gestion des commandes
 
 **User Story 5**: En tant qu'acheteur, je veux pouvoir finaliser mon achat afin de commander les produits de mon panier.
 
@@ -66,7 +66,7 @@ L'objectif de ce projet est de développer un site de vente en ligne permettant 
 - Une section "Commandes" doit lister les commandes reçues avec les détails : produit(s), quantité, adresse de livraison, statut de la commande.
 - Le vendeur doit pouvoir marquer une commande comme "Préparée" ou "Expédiée".
 
-#### 2.4 Évaluation et commentaires des produits
+### 2.4 Évaluation et commentaires des produits
 
 **User Story 7**: En tant qu'acheteur, je veux pouvoir laisser une évaluation et un commentaire sur un produit afin de partager mon avis.
 
