@@ -23,7 +23,7 @@ L'objectif de ce projet est de développer un site de vente en ligne permettant 
 
 ### 2.2 Panier d'achat
 
-**User Story 3**: En tant qu'utilisateur, je veux pouvoir ajouter des produits à mon panier afin de les acheter plus tard.
+**User Story 2**: En tant qu'utilisateur, je veux pouvoir ajouter des produits à mon panier afin de les acheter plus tard.
 
 **Critères d'acceptation** :
 
@@ -32,7 +32,7 @@ L'objectif de ce projet est de développer un site de vente en ligne permettant 
 - Le panier doit afficher le nom du produit, le prix unitaire, la quantité, et le total.
 - Les quantités doivent pouvoir être modifiées depuis le panier.
 
-**User Story 4**: En tant qu'utilisateur, je veux pouvoir retirer des produits de mon panier afin de n'acheter que ce qui m'intéresse.
+**User Story 3**: En tant qu'utilisateur, je veux pouvoir retirer des produits de mon panier afin de n'acheter que ce qui m'intéresse.
 
 **Critères d'acceptation** :
 
@@ -41,17 +41,17 @@ L'objectif de ce projet est de développer un site de vente en ligne permettant 
 
 ### 2.3 Gestion des commandes
 
-**User Story 5**: En tant qu'utilisateur, je veux pouvoir finaliser mon achat afin de commander les produits de mon panier.
+**User Story 4**: En tant qu'utilisateur, je veux pouvoir finaliser mon achat afin de commander les produits de mon panier.
 
 **Critères d'acceptation** :
 
 - Un bouton "Passer commande" doit être disponible dans le panier.
-- Le processus de commande doit inclure la saisie d’une adresse de livraison et d’un moyen de paiement.
-- Une confirmation de commande doit s’afficher une fois le paiement validé.
+- Le processus de commande doit inclure la saisie d’une adresse de livraison et d’un moyen de paiement fictif.
+- Une confirmation de commande doit s’afficher une fois le paiement fictif validé.
 
 ### 2.4 Évaluation et commentaires des produits
 
-**User Story 6**: En tant qu'utilisateur, je veux pouvoir laisser une évaluation et un commentaire sur un produit afin de partager mon avis.
+**User Story 5**: En tant qu'utilisateur, je veux pouvoir laisser une évaluation et un commentaire sur un produit afin de partager mon avis.
 
 **Critères d'acceptation** :
 
@@ -60,7 +60,7 @@ L'objectif de ce projet est de développer un site de vente en ligne permettant 
 - Les commentaires doivent inclure le nom de l’acheteur et la date de publication.
 - Les commentaires doivent être soumis uniquement si l’acheteur a commandé le produit.
 
-**User Story 7**: En tant qu'acheteur, je veux pouvoir consulter les évaluations et commentaires des produits afin de prendre une décision d'achat éclairée.
+**User Story 6**: En tant qu'acheteur, je veux pouvoir consulter les évaluations et commentaires des produits afin de prendre une décision d'achat éclairée.
 
 **Critères d'acceptation** :
 
