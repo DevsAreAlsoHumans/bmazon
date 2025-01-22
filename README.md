@@ -75,6 +75,30 @@ L'objectif de ce projet est de développer un site de vente en ligne permettant 
 **Frontend** : React
 **Base de donnée** : MySQL
 
+### 3.2 Base de donnée
+
+Table **produits** 
+- id : Identifiant unique du produit.
+- nom : Nom du produit.
+- description : Description du produit.
+- prix : Prix du produit.
+- stock_disponible : Quantité en stock du produit.
+- images : Liens des images du produit.
+
+Table **commandes** 
+- id : Identifiant unique de la commande.
+- produit_id : Référence à un produit dans la table produits.
+- date_commande : Date et heure de la commande.
+- statut : Statut de la commande (en cours, expédiée, livrée).
+- montant_total : Montant total de la commande.
+
+Table **commentaires**
+- id : Identifiant unique du commentaire.
+- produit_id : Référence au produit évalué.
+- note : Note attribuée au produit (entre 1 et 5).
+- commentaire : Contenu du commentaire.
+- date : Date et heure du commentaire.
+
 ### 3.2 Commandes et environnement
 Création d'un fichier .env.local dans le /back puis le compléter : 
 ```
