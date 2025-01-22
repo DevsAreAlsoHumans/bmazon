@@ -75,7 +75,15 @@ L'objectif de ce projet est de développer un site de vente en ligne permettant 
 **Frontend** : React
 **Base de donnée** : MySQL
 
-### 3.2 Commandes 
+### 3.2 Commandes et environnement
+Création d'un fichier .env.local dans le /back puis le compléter : 
+```
+DB_HOST=localhost
+DB_USER=
+DB_PASSWORD=
+DB_NAME=
+```
+
 
 Lancement du backend 
 
