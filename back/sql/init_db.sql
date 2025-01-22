@@ -13,3 +13,23 @@ CREATE TABLE IF NOT EXISTS produits (
     stock_disponible INT NOT NULL DEFAULT 0, 
     images TEXT                            
 );
+
+-- Table Commandes
+CREATE TABLE IF NOT EXISTS commandes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    produit_id INT NOT NULL, 
+    date_commande DATETIME DEFAULT CURRENT_TIMESTAMP,
+    statut ENUM('en cours', 'expédiée', 'livrée') DEFAULT 'en cours',
+    montant_total DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (produit_id) REFERENCES produits(id) ON DELETE CASCADE
+);
+
+-- Table Commentaires
+CREATE TABLE IF NOT EXISTS commentaires (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    produit_id INT NOT NULL,
+    note TINYINT CHECK (note BETWEEN 1 AND 5),
+    commentaire TEXT,
+    date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (produit_id) REFERENCES produits(id) ON DELETE CASCADE
+);
