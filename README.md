@@ -67,3 +67,32 @@ L'objectif de ce projet est de développer un site de vente en ligne permettant 
 - Les évaluations doivent afficher la moyenne des notes et le nombre total de commentaires.
 - Les commentaires doivent être triés par date, du plus récent au plus ancien.
 
+## Architecture Technique
+
+### 3.1 Langages et Technologies
+
+**Backend** : Express.js
+**Frontend** : React
+**Base de donnée** : MySQL
+
+### 3.2 Commandes 
+
+Lancement du backend 
+
+```
+cd back
+npm install
+node server.js
+```
+
+Lancement du front  
+```
+cd front
+npm install
+npm run start
+```
+### 4. Livrables
+
+- Application fonctionnelle avec toutes les fonctionnalités décrites.
+- Documentation technique pour les développeurs. (facultatif)
+- Guide d’utilisation pour les utilisateurs finaux. (facultatif)
