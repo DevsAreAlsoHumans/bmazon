@@ -322,12 +322,61 @@ app.post('/commandes_produits', (req, res) => {
         return res.status(400).send('Les champs commande_id, produit_id, quantite et prix_unitaire sont obligatoires');
     }
 
-    const sql = 'INSERT INTO commandes (commande_id, produit_id, quantite, prix_unitaire) VALUES (?, ?, ?, ?)';
+    if (quantite < 0 || prix_unitaire < 0) {
+        return res.status(400).send('La quantité et le prix unitaire doivent être supérieure à 0');
+    }
+
+    const sql = 'INSERT INTO commande_produits (commande_id, produit_id, quantite, prix_unitaire) VALUES (?, ?, ?, ?)';
     db.query(sql, [commande_id, produit_id, quantite, prix_unitaire], (err, result) => {
         if (err) {
+            console.log(db.query(sql, [commande_id, produit_id, quantite, prix_unitaire]));
+            console.log(err);
             return res.status(500).send("Erreur lors de l\'ajout d'une commande_produit");
         }
-        res.status(201).json({ id: result.commande_id, produit_id, quantite, prix_unitaire });
+        res.status(201).json({ commande_id, produit_id, quantite, prix_unitaire });
+    });
+});
+
+// Mettre à jour une commande_produit
+app.put('/commandes_produits/:id', (req, res) => {
+    const { id } = req.params;
+    const { commande_id, produit_id, quantite, prix_unitaire } = req.body;
+
+    const sql = `
+        UPDATE commande_produits 
+        SET commande_id = COALESCE(?, commande_id),
+            produit_id = COALESCE(?, produit_id),
+            quantite = COALESCE(?, quantite),
+            prix_unitaire = COALESCE(?, prix_unitaire)
+        WHERE id = ?`;
+
+    db.query(sql, [commande_id, produit_id, quantite, prix_unitaire, id], (err, result) => {
+        if (quantite < 0 || prix_unitaire < 0) {
+            return res.status(400).send('La quantité et le prix unitaire doivent être supérieure à 0');
+        }
+        if (err) {
+            return res.status(500).send('Erreur lors de la mise à jour de la commande_produit');
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).send('Commande_produit non trouvé');
+        }
+        res.json({ id, commande_id, produit_id, quantite, prix_unitaire });
+    });
+});
+
+// Supprimer une commande_produit
+app.delete('/commandes_produits/:id', (req, res) => {
+    const { id } = req.params;
+    const sql = 'DELETE FROM commande_produits WHERE id = ?';
+
+    db.query(sql, [id], (err, result) => {
+        if (err) {
+            return res.status(500).send('Erreur lors de la suppression de la commande_produit');
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).send('Commande_produit non trouvé');
+        }
+        res.send(`Commande_produit avec l'id ${id} supprimé.`);
     });
 });
 
