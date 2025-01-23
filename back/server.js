@@ -57,7 +57,6 @@ app.get('/produits/:id', (req, res) => {
     const { id } = req.params;
     const sql = 'SELECT * FROM produits WHERE id = ?';
     db.query(sql, [id], (err, results) => {
-        console.log(db.query(sql));
         if (err) {
             return res.status(500).send('Erreur lors de la récupération des produits');
         }
