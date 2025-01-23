@@ -54,8 +54,8 @@ app.get('/produits', (req, res) => {
 app.post('/produits', (req, res) => {
     const { nom, description, prix, stock_disponible, images } = req.body;
 
-    if (!nom || !prix || stock_disponible === undefined) {
-        return res.status(400).send('Les champs nom, prix et stock_disponible sont obligatoires');
+    if (!nom || !prix || !stock_disponible || !images ) {
+        return res.status(400).send('Les champs nom, prix, stock_disponible et images sont obligatoires');
     }
 
     const sql = 'INSERT INTO produits (nom, description, prix, stock_disponible, images) VALUES (?, ?, ?, ?, ?)';
