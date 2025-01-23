@@ -52,6 +52,19 @@ app.get('/produits', (req, res) => {
     });
 });
 
+// Obtenir tous les produits avec ID
+app.get('/produits/:id', (req, res) => {
+    const { id } = req.params;
+    const sql = 'SELECT * FROM produits WHERE id = ?';
+    db.query(sql, [id], (err, results) => {
+        console.log(db.query(sql));
+        if (err) {
+            return res.status(500).send('Erreur lors de la récupération des produits');
+        }
+        res.json(results);
+    });
+});
+
 // Ajouter un nouveau produit
 app.post('/produits', (req, res) => {
     const { nom, description, prix, stock_disponible, images } = req.body;
@@ -124,6 +137,18 @@ app.get('/commentaires', (req, res) => {
     });
 });
 
+// Obtenir tous les commentaires avec un produit_id
+app.get('/commentaires/:id', (req, res) => {
+    const { id } = req.params;
+    const sql = 'SELECT * FROM commentaires WHERE produit_id = ?';
+    db.query(sql, [id], (err, results) => {
+        if (err) {
+            return res.status(500).send('Erreur lors de la récupération des produits');
+        }
+        res.json(results);
+    });
+});
+
 // Ajouter un nouveau commentaires
 app.post('/commentaires', (req, res) => {
     const { produit_id, note, commentaire, date } = req.body;
@@ -164,7 +189,7 @@ app.put('/commentaires/:id', (req, res) => {
 
  
     db.query(sql, [produit_id, note, commentaire, date, id], (err, result) => {
-        
+
         if (note >5 || note <0 ) {
             return res.status(400).send('La note doit être comprise entre 0 et 5');
         }
