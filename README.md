@@ -106,6 +106,9 @@ Table **commentaires**
 - commentaire : Contenu du commentaire.
 - date : Date et heure du commentaire.
 
+![Screenshot 2025-01-24 at 14-52-26 localhost _ localhost _ bmazon phpMyAdmin 5 2 1-5 fc41](https://github.com/user-attachments/assets/c03c6f6a-283d-48aa-80e3-ae53286d8fd0)
+
+
 ### 3.2 Commandes et environnement
 Création d'un fichier .env.local dans le /back puis le compléter : 
 ```
@@ -130,8 +133,15 @@ cd front
 npm install
 npm run start
 ```
-### 4. Livrables
+
+### 4 . Diagramme des cas d'utilisations 
+
+![Capture d’écran du 2025-01-24 14-54-16](https://github.com/user-attachments/assets/bf55d82b-a6ac-498a-ab3a-0e878c5f6492)
+
+
+### 5. Livrables
 
 - Application fonctionnelle avec toutes les fonctionnalités décrites.
 - Documentation technique pour les développeurs. (facultatif)
 - Guide d’utilisation pour les utilisateurs finaux. (facultatif)
+
