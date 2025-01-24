@@ -92,6 +92,13 @@ Table **commandes**
 - statut : Statut de la commande (en cours, expédiée, livrée).
 - montant_total : Montant total de la commande.
 
+Table **commande_produits**
+- id : Identifiant unique de commande_produits
+- commande_id: Référence à une commande dans la table commandes.
+- produit_id : Référence à un produit dans la table produits.
+- quantite : Quantité du produit dans la commande
+- prix_unitaire : Prix unitaire du produit
+
 Table **commentaires**
 - id : Identifiant unique du commentaire.
 - produit_id : Référence au produit évalué.
