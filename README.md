@@ -144,5 +144,4 @@ npm run start
 - Application fonctionnelle avec toutes les fonctionnalités décrites.
 - Documentation technique pour les développeurs. (facultatif)
 - Guide d’utilisation pour les utilisateurs finaux. (facultatif)
-- 
 
