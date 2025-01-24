@@ -9,6 +9,13 @@ require('dotenv-flow').config();
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT", "DELETE");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    next();
+  })
+  
 // MySQL Connection
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
@@ -222,7 +229,6 @@ app.delete('/commentaires/:id', (req, res) => {
         res.send(`Commentaires avec l'id ${id} supprimé.`);
     });
 });
-
 
 app.listen(PORT, () => {
     console.log(`Serveur API en cours d'execution sur le http://localhost${PORT}`)
