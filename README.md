@@ -139,7 +139,7 @@ npm run start
 ![Capture d’écran du 2025-01-24 14-54-16](https://github.com/user-attachments/assets/bf55d82b-a6ac-498a-ab3a-0e878c5f6492)
 
 
-### 4. Livrables
+### 5. Livrables
 
 - Application fonctionnelle avec toutes les fonctionnalités décrites.
 - Documentation technique pour les développeurs. (facultatif)
