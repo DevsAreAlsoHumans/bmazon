@@ -1,11 +1,14 @@
 import React from 'react';
 
-function Product() {
+function Product({ nom, prix, image }) {
   return (
-    <div className="product">
-        <Navbar />
+    <div className="Produit">
+      <img src={image} alt={nom} />
+      <h2>{nom}</h2>
+      <p>{prix}€</p>
+      <button type="submit" className="add-button">Ajouter un article</button>
     </div>
   );
 }
 
-export default Product; 
+export default Product;
