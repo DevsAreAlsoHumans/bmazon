@@ -8,11 +8,10 @@ function Navbar() {
         <img src={logo} alt='Logo' /> 
       </div>
       <ul className='navbar-menu'>
-        <li><a href='#'>Accueil</a></li>
-        <li><a href='#'>Commandes</a></li>
-        <li><a href='#'>Panier</a></li>
-        <li><a href='#'>Contact</a></li>
-      </ul>
+        <li><a href='/'>Accueil</a></li>
+        <li><a href='commandes'>Commandes</a></li>
+        <li><a href='panier'>Panier</a></li>
+      </ul> 
     </nav>
   );
 }

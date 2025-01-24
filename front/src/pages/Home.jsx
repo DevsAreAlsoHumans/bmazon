@@ -11,7 +11,6 @@ function Home() {
       try {
         const response = await axios.get("http://localhost:3000/produits/");
         setProduit(response.data);
-        console.log(produit);
       } catch (error) {
         console.error("Erreur lors de la récupération des produits:", error);
       }
@@ -22,18 +21,18 @@ function Home() {
 
   return (
     <>
-
       <Navbar />
+      <h1>Accueil</h1>
       <div className="Produit-container">
-        {produit.map((product) => (
-          <Product
-            key={product.id}
-            nom={product.nom}
-            prix={product.prix}
-            images={product.images}
-          />
-        ))}
-      </div>
+          {produit.map((product) => (
+                <Product
+                  nom={product.nom}
+                  prix={product.prix}
+                  images={product.images}
+                  id={product.id}
+                />
+          ))}
+        </div>
     </>
   );
 }
