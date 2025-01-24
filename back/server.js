@@ -223,7 +223,163 @@ app.delete('/commentaires/:id', (req, res) => {
     });
 });
 
+// Commandes
+
+// Obtenir toutes les commandes
+app.get('/commandes', (req, res) => {
+    const sql = 'SELECT * FROM commandes';
+    db.query(sql, (err, results) => {
+        if (err) {
+            return res.status(500).send('Erreur lors de la récupération des commandes');
+        }
+        res.json(results);
+    });
+});
+
+// Ajouter une nouvelle commande
+app.post('/commandes', (req, res) => {
+    const { produit_id, date_commande, statut, montant_total } = req.body;
+
+    if (!produit_id || !date_commande || !statut || !montant_total ) {
+        return res.status(400).send('Les champs produit_id, date_commande, statut et montant_total sont obligatoires');
+    }
+
+    const sql = 'INSERT INTO commandes (produit_id, date_commande, statut, montant_total) VALUES (?, ?, ?, ?)';
+    db.query(sql, [produit_id, date_commande, statut, montant_total], (err, result) => {
+        if (err) {
+            return res.status(500).send("Erreur lors de l\'ajout d'une commande");
+        }
+        res.status(201).json({ id: result.produit_id, date_commande, statut, montant_total });
+    });
+});
+
+
+// Mettre à jour une commande
+app.put('/commandes/:id', (req, res) => {
+    const { id } = req.params;
+    const { produit_id, date_commande, statut, montant_total } = req.body;
+
+    const sql = `
+        UPDATE commandes 
+        SET produit_id = COALESCE(?, produit_id),
+            date_commande = COALESCE(?, date_commande),
+            statut = COALESCE(?, statut),
+            montant_total = COALESCE(?, montant_total)
+        WHERE id = ?`;
+
+    db.query(sql, [produit_id, date_commande, statut, montant_total, id], (err, result) => {
+        if (!/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]) ([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/.test(date)) {
+            return res.status(400).send("La date doit être au format 'YYYY-MM-DD HH:MM:SS'");
+        }
+        if (statut !== 'en attente' && statut !== 'expédiée' && statut !== 'livrée') {
+            return res.status(400).send("Le statut doit être 'en attente', 'expédiée' ou 'livrée'");
+        }
+        if (err) {
+            console.log(err);
+            return res.status(500).send('Erreur lors de la mise à jour de la commande');
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).send('Commande non trouvée');
+        }
+        res.json({ id, produit_id, date_commande, statut, montant_total });
+    });
+});
+
+// Supprimer une commande
+app.delete('/commandes/:id', (req, res) => {
+    const { id } = req.params;
+    const sql = 'DELETE FROM commandes WHERE id = ?';
+
+    db.query(sql, [id], (err, result) => {
+        if (err) {
+            return res.status(500).send('Erreur lors de la suppression de la commande');
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).send('Commande non trouvé');
+        }
+        res.send(`Commande avec l'id ${id} supprimé.`);
+    });
+});
+
+// Commande_produits
+
+// Obtenir toutes les commande_produits
+app.get('/commande_produits', (req, res) => {
+    const sql = 'SELECT * FROM commande_produits';
+    db.query(sql, (err, results) => {
+        if (err) {
+            return res.status(500).send('Erreur lors de la récupération des commandes_produits');
+        }
+        res.json(results);
+    });
+});
+
+// Ajouter une nouvelle commande_produit
+app.post('/commandes_produits', (req, res) => {
+    const { commande_id, produit_id, quantite, prix_unitaire } = req.body;
+
+    if (!commande_id || !produit_id || !quantite || !prix_unitaire ) {
+        return res.status(400).send('Les champs commande_id, produit_id, quantite et prix_unitaire sont obligatoires');
+    }
+
+    if (quantite < 0 || prix_unitaire < 0) {
+        return res.status(400).send('La quantité et le prix unitaire doivent être supérieure à 0');
+    }
+
+    const sql = 'INSERT INTO commande_produits (commande_id, produit_id, quantite, prix_unitaire) VALUES (?, ?, ?, ?)';
+    db.query(sql, [commande_id, produit_id, quantite, prix_unitaire], (err, result) => {
+        if (err) {
+            console.log(db.query(sql, [commande_id, produit_id, quantite, prix_unitaire]));
+            console.log(err);
+            return res.status(500).send("Erreur lors de l\'ajout d'une commande_produit");
+        }
+        res.status(201).json({ commande_id, produit_id, quantite, prix_unitaire });
+    });
+});
+
+// Mettre à jour une commande_produit
+app.put('/commandes_produits/:id', (req, res) => {
+    const { id } = req.params;
+    const { commande_id, produit_id, quantite, prix_unitaire } = req.body;
+
+    const sql = `
+        UPDATE commande_produits 
+        SET commande_id = COALESCE(?, commande_id),
+            produit_id = COALESCE(?, produit_id),
+            quantite = COALESCE(?, quantite),
+            prix_unitaire = COALESCE(?, prix_unitaire)
+        WHERE id = ?`;
+
+    db.query(sql, [commande_id, produit_id, quantite, prix_unitaire, id], (err, result) => {
+        if (quantite < 0 || prix_unitaire < 0) {
+            return res.status(400).send('La quantité et le prix unitaire doivent être supérieure à 0');
+        }
+        if (err) {
+            return res.status(500).send('Erreur lors de la mise à jour de la commande_produit');
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).send('Commande_produit non trouvé');
+        }
+        res.json({ id, commande_id, produit_id, quantite, prix_unitaire });
+    });
+});
+
+// Supprimer une commande_produit
+app.delete('/commandes_produits/:id', (req, res) => {
+    const { id } = req.params;
+    const sql = 'DELETE FROM commande_produits WHERE id = ?';
+
+    db.query(sql, [id], (err, result) => {
+        if (err) {
+            return res.status(500).send('Erreur lors de la suppression de la commande_produit');
+        }
+        if (result.affectedRows === 0) {
+            return res.status(404).send('Commande_produit non trouvé');
+        }
+        res.send(`Commande_produit avec l'id ${id} supprimé.`);
+    });
+});
 
 app.listen(PORT, () => {
-    console.log(`Serveur API en cours d'execution sur le http://localhost${PORT}`)
+    console.log(`Serveur API en cours d'execution sur le http://localhost:${PORT}`)
 })
